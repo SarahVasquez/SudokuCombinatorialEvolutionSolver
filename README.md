@@ -40,3 +40,7 @@ Une fois que tous les organismes ont eu une chance de s'améliorer, deux bonnes 
         model.Add(new Activation('softmax'));
 
 ```
+
+![logo](art/python_included_nuget.png)
+
+
