@@ -21,3 +21,22 @@ Par exemple, dans un sudoku, il y a plusieurs contraintes. Chaque ligne de la gr
 L'optimisation de l'évolution combinatoire utilise des idées issues de plusieurs algorithmes bio-inspirés. L'algorithme maintient une collection d'organismes virtuels. Chaque organisme représente une solution possible au problème. L'évolution combinatoire est un processus itératif où à chaque itération, chaque organisme tente de trouver une meilleure solution en examinant une nouvelle solution possible.
 
 Une fois que tous les organismes ont eu une chance de s'améliorer, deux bonnes solutions d'organismes sont sélectionnées et utilisées pour donner naissance à un nouvel organisme, qui remplace une mauvaise solution. Ainsi, la population d'organismes évolue avec le temps. Si une solution optimale n'est pas trouvée après un certain temps (nombre max d’itérations), l'algorithme est redémarré en tuant tous les organismes et en créant une nouvelle population. Ce processus de redémarrage a pour but de contrer la tendance de l’algorithme à se bloquer trop rapidement lorsqu’il trouve une très bonne solution. C’est une technique courante de nombreux algorithmes d’optimisation.
+
+
+
+     // Modele CNN
+        var model = new Sequential();
+
+        model.Add(new Conv2D(64, kernel_size: (3, 3).ToTuple(), padding: 'same', activation: "relu", input_shape: (9, 9, 1));
+        model.Add(new BatchNormalization());
+        model.Add(new Conv2D(64, (3, 3).ToTuple(), padding: 'same', activation: "relu"));
+        model.Add(new BatchNormalization());
+        model.Add(new Conv2D(128, (1, 1).ToTuple(), padding: 'same', activation: "relu"));
+
+
+        model.Add(new Flatten());
+        model.Add(new Dense(81*9));
+        model.Add(new Reshape((-1, 9)));
+        model.Add(new Activation('softmax'));
+
+
