@@ -2,7 +2,7 @@
 
 ## Sujet 11 : Résolution de Sudoku par réseau de neurones convolués
 
-#### Collecte des données
+### Collecte des données
 
 Nous avons trouvé les données sur Kaggle qui contiennent 1 million de jeux Sudoku non résolus et résolus sur deux colonnes. Chaque jeu représente une chaîne de 81  numéros.  Le nombre 0 représente la position vide dans les jeux non résolus.
 
@@ -10,7 +10,7 @@ Notre tâche est de nourrir le sudoku non résolu grâce à un réseau neuronal 
  
 Pour cela, nous devons convertir les données d'entrées non résolues en un tableau 3D puis les normaliser car les réseaux de neurones fonctionnent généralement mieux avec des données normalisées centrées.
  
-#### Conception de réseau
+### Conception de réseau
 
 Dans une classification multiclasse typique, le réseau neuronal produit des scores pour chaque classe. Ensuite, nous appliquons la fonction softmax sur les scores finaux pour les convertir en probabilités. Et les données sont classées dans une classe qui a la valeur de probabilité la plus élevée.
 
@@ -23,7 +23,7 @@ Pour compiler le modèle, La fonction loss utilisée  est la fonction "sparse_ca
  
 Le modèle a été entraîné avec 2 epochs et un batch-size de 64. Le taux d'apprentissage pour le premier "epoch" est de 0.001 et de 0.0001 pour le deuxième.
 
-#### Résolution du Sudoku 
+### Résolution du Sudoku 
 
 Lors de la résolution du Sudoku , le réseau prédit peu de valeurs erronées. Une approche humaine pour résoudre le jeu est de remplir les numéros un par un.
 Nous ne regardons pas simplement le sudoku une fois pour remplir tous les nombres. L’avantage de remplir les numéros un par un, c’est que chaque fois que nous remplissons un numéro, nous continuons à avoir une meilleure idée de la prochaine étape.
@@ -82,7 +82,6 @@ L'optimisation de l'évolution combinatoire utilise des idées issues de plusieu
 Une fois que tous les organismes ont eu une chance de s'améliorer, deux bonnes solutions d'organismes sont sélectionnées et utilisées pour donner naissance à un nouvel organisme, qui remplace une mauvaise solution. Ainsi, la population d'organismes évolue avec le temps. Si une solution optimale n'est pas trouvée après un certain temps (nombre max d’itérations), l'algorithme est redémarré en tuant tous les organismes et en créant une nouvelle population. Ce processus de redémarrage a pour but de contrer la tendance de l’algorithme à se bloquer trop rapidement lorsqu’il trouve une très bonne solution. C’est une technique courante de nombreux algorithmes d’optimisation.
 
 ### Explication du programme 
-
 
 Sur Visual Studio, nous avons créé le projet SudokuCombinatorialEvolutionSolver et ce programme n'a pas de dépendances.NET significatives.
  
@@ -313,8 +312,7 @@ public static int[,] MergeMatrices(Random rnd, int[,] m1, int[,] m2)
 
 ```
 
-La méthode SolveEvo
-
+### La méthode SolveEvo
 
 La méthode SolveEvo (exécution de manière évolutive) est une combinaison de code et de pseudo-code (Déf : Le pseudo-code, appelé aussi Langage de Description d’Algorithmes, est une façon de décrire un algorithme en langage presque naturel, sans référence à un langage de programmation en particulier). La méthode commence par déterminer le nombre d'objets Organism comme 90% du nombre total utilisé. Cette valeur a été déterminée par les différents essais et erreurs et en trouvant les meilleures. Les objets Organism sont stockés dans un tableau nommé Hive. Nous voyons que la variable hive contient un nouvel organisme, qui va aussi chercher la meilleure erreur à son tour.
 Le code est le suivant : 
@@ -399,12 +397,7 @@ private Sudoku SolveInternal(Sudoku sudoku, int numOrganisms, int maxEpochs)
 
 Il y a une stratégie d’optimisation mise en place pour que l’algorithme ne garde que des solutions optimales. A chaque boucle d’itération, chaque organisme génère une solution aléatoire. Ce qui crée un Organism unique. Parfois, la méthode ne va pas garder la meilleure solution mais prendre une solution moins optimale pour pousser l’algorithme a chercher une solution encore plus optimale. 
 
-### Emballer
 
-Définition Métaheuristique : c’est un algorithme d’optimisation visant à résoudre des problèmes d’optimisation difficile pour lesquels on ne connaît pas de méthode classique plus efficace. Les métaheuristiques sont généralement des algorithmes stochastiques qui utilisent l’itération, et qui progressent vers un optimum global, c'est-à-dire l’extremum global d'une fonction, par échantillonnage d’une fonction objectif. Le but d’une métaheuristique est de résoudre un problème d’optimisation donné : elle cherche un objet mathématique (une permutation, un vecteur),  minimisant (ou maximisant) une fonction objectif, qui décrit la qualité d’une solution au problème.
-
-L'évolution combinatoire est un algorithme d’optimisation de type méta-heuristique. 
-Quatre idées sont mises en avant pour l’optimisation combinatoire : les données qui décrivent le problème, définir une solution aléatoire et une solution voisine et définir la métrique d’erreur.
 
 
 ![logo](art/python_included_nuget.png)
