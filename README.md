@@ -1,6 +1,6 @@
 # SudokuCombinatorialEvolutionSolver
 
-### Introduction
+## Introduction
 
 Ces dernières années, des progrès considérables ont été réalisés dans les domaines des neurosciences, des sciences cognitives et de la physiologie en ce qui concerne la manière dont les êtres humains traitent l'information. La recherche actuelle dans l'informatique est impactée par ces progrès notamment dans les domaines de neurosciences computationnelles, de sciences cognitives, de biologie et de méthodes computationnelles inspirées de l'évolution. Il existe tout un tas d’algorithmes directement inspirés par la nature. 
 
@@ -21,6 +21,30 @@ Par exemple, dans un sudoku, il y a plusieurs contraintes. Chaque ligne de la gr
 L'optimisation de l'évolution combinatoire utilise des idées issues de plusieurs algorithmes bio-inspirés. L'algorithme maintient une collection d'organismes virtuels. Chaque organisme représente une solution possible au problème. L'évolution combinatoire est un processus itératif où à chaque itération, chaque organisme tente de trouver une meilleure solution en examinant une nouvelle solution possible.
 
 Une fois que tous les organismes ont eu une chance de s'améliorer, deux bonnes solutions d'organismes sont sélectionnées et utilisées pour donner naissance à un nouvel organisme, qui remplace une mauvaise solution. Ainsi, la population d'organismes évolue avec le temps. Si une solution optimale n'est pas trouvée après un certain temps (nombre max d’itérations), l'algorithme est redémarré en tuant tous les organismes et en créant une nouvelle population. Ce processus de redémarrage a pour but de contrer la tendance de l’algorithme à se bloquer trop rapidement lorsqu’il trouve une très bonne solution. C’est une technique courante de nombreux algorithmes d’optimisation.
+
+### Explication du programme 
+
+
+Sur Visual Studio, nous avons créé le projet SudokuCombinatorialEvolutionSolver et ce programme n'a pas de dépendances.NET significatives.
+ 
+La classe principale a toute la logique du code implémenté en tant que méthodes statiques tandis que la class Organism définit une solution possible au problème de Sudoku cible.
+ 
+Chaque objet Organisme a un type, qui peut être 0 pour un organisme «Worker» ou 1 pour un organisme «Explorer». Le champ nommé "matrix" est une matrice de type tableau de tableaux d'entiers qui représente une solution possible. Chaque solution possible a une erreur, où une valeur d'erreur de 0 signifiant qu'aucune contrainte n'est violée et, par conséquent, le champ de matrice contient une solution optimale. Chaque objet Organism a un champ pour contrôler si l'organisme est tué à chaque epoch.
+
+Le programme configure et affiche le problème Sudoku en utilisant ces instructions:
+
+```c#
+
+Console.WriteLine("Begin solving Sudoku using combinatorial evolution");
+Console.WriteLine("The Sudoku is:");
+
+var sudoku = Sudoku.Easy;
+Console.WriteLine(sudoku.ToString());
+
+```
+
+
+
 
 ```c#
 
