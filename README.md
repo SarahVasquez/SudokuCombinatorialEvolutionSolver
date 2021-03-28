@@ -22,7 +22,7 @@ L'optimisation de l'évolution combinatoire utilise des idées issues de plusieu
 
 Une fois que tous les organismes ont eu une chance de s'améliorer, deux bonnes solutions d'organismes sont sélectionnées et utilisées pour donner naissance à un nouvel organisme, qui remplace une mauvaise solution. Ainsi, la population d'organismes évolue avec le temps. Si une solution optimale n'est pas trouvée après un certain temps (nombre max d’itérations), l'algorithme est redémarré en tuant tous les organismes et en créant une nouvelle population. Ce processus de redémarrage a pour but de contrer la tendance de l’algorithme à se bloquer trop rapidement lorsqu’il trouve une très bonne solution. C’est une technique courante de nombreux algorithmes d’optimisation.
 
-
+```c#
 
      // Modele CNN
         var model = new Sequential();
@@ -39,4 +39,4 @@ Une fois que tous les organismes ont eu une chance de s'améliorer, deux bonnes 
         model.Add(new Reshape((-1, 9)));
         model.Add(new Activation('softmax'));
 
-
+```
