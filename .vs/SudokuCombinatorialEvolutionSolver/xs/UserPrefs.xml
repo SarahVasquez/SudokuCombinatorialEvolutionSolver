@@ -1,23 +1,19 @@
 ﻿<Properties StartupConfiguration="{0C9DF292-8C05-4F6C-A8E5-A779DD3C5D2E}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Program.cs" Line="53" Column="41" />
-      <File FileName="Sudoku.cs" />
+      <File FileName="Program.cs" Line="110" Column="1" />
+      <File FileName="Sudoku.cs" Line="207" Column="10" />
       <File FileName="MatrixHelper.cs" />
-      <File FileName="SudokuSolver.cs" />
+      <File FileName="Organism.cs" />
+      <File FileName="OrganismType.cs" />
+      <File FileName="SudokuSolver.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SudokuCombinatorialEvolutionSolver" expanded="True">
+          <Node name="SudokuCombinatorialEvolutionSolver" expanded="True" selected="True">
             <Node name="SudokuCombinatorialEvolutionSolver" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
-              <Node name="screens" expanded="True">
-                <Node name="screen1.png" selected="True" />
-              </Node>
+              <Node name="screens" expanded="True" />
             </Node>
           </Node>
         </State>

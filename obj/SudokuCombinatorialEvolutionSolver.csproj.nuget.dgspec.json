@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sarahvasquez/Desktop/Sudoku/SudokuCombinatorialEvolutionSolver/SudokuCombinatorialEvolutionSolver.csproj": {}
+    "/Users/sarahvasquez/Desktop/Sudoku/5ESGF-BD-2021/SudokuCombinatorialEvolutionSolver/SudokuCombinatorialEvolutionSolver.csproj": {}
   },
   "projects": {
-    "/Users/sarahvasquez/Desktop/Sudoku/SudokuCombinatorialEvolutionSolver/SudokuCombinatorialEvolutionSolver.csproj": {
+    "/Users/sarahvasquez/Desktop/Sudoku/5ESGF-BD-2021/SudokuCombinatorialEvolutionSolver/SudokuCombinatorialEvolutionSolver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sarahvasquez/Desktop/Sudoku/SudokuCombinatorialEvolutionSolver/SudokuCombinatorialEvolutionSolver.csproj",
+        "projectUniqueName": "/Users/sarahvasquez/Desktop/Sudoku/5ESGF-BD-2021/SudokuCombinatorialEvolutionSolver/SudokuCombinatorialEvolutionSolver.csproj",
         "projectName": "SudokuCombinatorialEvolutionSolver",
-        "projectPath": "/Users/sarahvasquez/Desktop/Sudoku/SudokuCombinatorialEvolutionSolver/SudokuCombinatorialEvolutionSolver.csproj",
+        "projectPath": "/Users/sarahvasquez/Desktop/Sudoku/5ESGF-BD-2021/SudokuCombinatorialEvolutionSolver/SudokuCombinatorialEvolutionSolver.csproj",
         "packagesPath": "/Users/sarahvasquez/.nuget/packages/",
-        "outputPath": "/Users/sarahvasquez/Desktop/Sudoku/SudokuCombinatorialEvolutionSolver/obj/",
+        "outputPath": "/Users/sarahvasquez/Desktop/Sudoku/5ESGF-BD-2021/SudokuCombinatorialEvolutionSolver/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/sarahvasquez/.config/NuGet/NuGet.Config"

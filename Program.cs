@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
+using System.IO.Compression;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Spark.Sql;
@@ -11,50 +14,37 @@ namespace SudokuCombinatorialEvolutionSolver
     internal static class Program
     {
 
-        //static readonly string _filePath = Path.Combine("/Users/sarahvasquez/Desktop/Sudoku/SudokuCombinatorialEvolutionSolver/dataset", "sudoku.csv");
+        static readonly string _filePath = Path.Combine("/Users/sarahvasquez/Desktop/Sudoku/5ESGF-BD-2021/SudokuCombinatorialEvolutionSolver/dataset", "sudoku.csv");
 
         private static void Main(string[] args)
         {
 
             var temps1 = new System.Diagnostics.Stopwatch();
-            var temps2 = new System.Diagnostics.Stopwatch();
+            
 
-            int nbsudokus = 3000;
-            int noyau = 1;
-            int noeud = 1;
+            //int nbsudokus = 3000;
+            //int noyau = 1;
+            //int noeud = 1;
 
             temps1.Start();
 
-            SparkSession spark = SparkSession
-                .Builder()
-                .AppName(nbsudokus + " sudokus à résoudre avec " + noyau + " noyau(x) et " + noeud + " noeud(s)")
-                .Config("spark.executor.cores", noyau)
-                .Config("spark.executor.instances", noeud)
-                .GetOrCreate();
+            //SparkSession spark = SparkSession
+                //.Builder()
+                //.AppName(nbsudokus + " sudokus à résoudre avec " + noyau + " noyau(x) et " + noeud + " noeud(s)")
+                //.Config("spark.executor.cores", noyau)
+                //.Config("spark.executor.instances", noeud)
+                //.GetOrCreate();
 
-            string[] lines = File.ReadAllLines("/Users/sarahvasquez/Desktop/Sudoku/SudokuCombinatorialEvolutionSolver/dataset/sudoku.csv");
+            //var strPathCSV = @"/Users/sarahvasquez/Sudoku/Sudoku.CNN/Dataset/sudoku.csv";
+            var sudoku = Sudoku.CSV(_filePath);
+            //string[] lines = File.ReadAllLines(" / Users/sarahvasquez/Desktop/Sudoku/SudokuCombinatorialEvolutionSolver/dataset/sudoku.csv");
 
             Console.WriteLine("Begin solving Sudoku using combinatorial evolution");
             Console.WriteLine("The Sudoku is:");
 
-            var sudoku = lines;
+            //var sudoku = lines;
 
-            public static Sudoku ExtremelyDifficult
-            {
-                get
-                {
-                var problem = new[,]
-                {
-            {lines[0].Substring(0, 9)},
-            {lines[0].Substring(9, 9)},
-            {lines[0].Substring(18, 9)},
-            {lines[0].Substring(27, 9)},
-            {lines[0].Substring(36, 9)},
-            {lines[0].Substring(45, 9)},
-            {lines[0].Substring(54, 9)},
-            {lines[0].Substring(63, 9)},
-            {lines[0].Substring(72, 9)}
-                };
+            
             Console.WriteLine(sudoku.ToString());
 
             const int numOrganisms = 200;
@@ -65,7 +55,7 @@ namespace SudokuCombinatorialEvolutionSolver
             Console.WriteLine($"Setting maxRestarts: {maxRestarts}");
 
             var solver = new SudokuSolver();
-            var solvedSudoku = solver.Solve(problem, numOrganisms, maxEpochs, maxRestarts);
+            var solvedSudoku = solver.Solve(sudoku, numOrganisms, maxEpochs, maxRestarts);
 
             Console.WriteLine("Best solution found:");
             Console.WriteLine(solvedSudoku.ToString());
@@ -74,17 +64,60 @@ namespace SudokuCombinatorialEvolutionSolver
 
             temps1.Stop();
 
-            temps2.Start();
-
-            //MultiSpark("1", "2", 1000);
-
-            temps2.Stop();
+           
 
             Console.WriteLine($"Temps d'exécution pour 1 noyau et 1 noeud: {temps1.ElapsedMilliseconds} ms");
-            Console.WriteLine($"Temps d'exécution pour 1 noyau et 2 noeuds: {temps2.ElapsedMilliseconds} ms");
+
 
 
         }
-    }
 
+        private static void Sudokures(string noyau, string noeud, int nbsudokus)
+        {
+            // Initialisation de la session Spark
+            SparkSession spark = SparkSession
+                .Builder()
+                .AppName(nbsudokus + " sudokus à résoudre avec " + noyau + " noyau(x) et " + noeud + " noeud(s)")
+                .Config("spark.executor.cores", noyau)
+                .Config("spark.executor.instances", noeud)
+                .GetOrCreate();
+
+            // Intégration du csv dans un dataframe
+            DataFrame df = spark
+                .Read()
+                .Option("header", true)
+                .Option("inferSchema", true)
+                .Csv(_filePath);
+
+            //limit du dataframe avec un nombre de ligne prédéfini lors de l'appel de la fonction
+            DataFrame df2 = df.Limit(nbsudokus);
+
+            //Watch seulement pour la résolution des sudokus
+            var watch2 = new System.Diagnostics.Stopwatch();
+            watch2.Start();
+
+            const int numOrganisms = 200;
+            const int maxEpochs = 5000;
+            const int maxRestarts = 40;
+
+            // Création de la spark User Defined Function
+            spark.Udf().Register<string, string>(
+                "SukoduUDF",
+                (sudoku) =>
+                {
+                    SudokuSolver.Solve(Sudoku.CSV(sudoku), numOrganisms, maxEpochs, maxRestarts);
+                });
+
+            // Appel de l'UDF dans un nouveau dataframe spark qui contiendra les résultats aussi
+            df2.CreateOrReplaceTempView("Resolved");
+            DataFrame sqlDf = spark.Sql("SELECT Sudokus, SukoduUDF(Sudokus) as Resolution from Resolved");
+            sqlDf.Show();
+
+            watch2.Stop();
+
+            spark.Stop();
+
+        }
+
+    }
 }

@@ -188,5 +188,23 @@ namespace SudokuCombinatorialEvolutionSolver
                 return new Sudoku(problem);
             }
         }
+
+        public static Sudoku CSV(string sudoku)
+        {
+            int[,] problem = new int[,]{
+            {int.Parse(sudoku.Substring(0,9))},
+            {int.Parse(sudoku.Substring(9, 9))},
+            {int.Parse(sudoku.Substring(18, 9))},
+            {int.Parse(sudoku.Substring(27, 9))},
+            {int.Parse(sudoku.Substring(36, 9))},
+            {int.Parse(sudoku.Substring(45, 9))},
+            {int.Parse(sudoku.Substring(54, 9))},
+            {int.Parse(sudoku.Substring(63, 9))},
+            {int.Parse(sudoku.Substring(72, 9))}
+            };
+
+            return new Sudoku(problem);
+        }
     }
 }
+
