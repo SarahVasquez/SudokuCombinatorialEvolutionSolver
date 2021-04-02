@@ -23,6 +23,9 @@ Pour compiler le modèle, La fonction loss utilisée  est la fonction "sparse_ca
  
 Le modèle a été entraîné avec 2 epochs et un batch-size de 64. Le taux d'apprentissage pour le premier "epoch" est de 0.001 et de 0.0001 pour le deuxième.
 
+![screen1](screens/screen1.png)
+
+
 ### Résolution du Sudoku 
 
 Lors de la résolution du Sudoku , le réseau prédit peu de valeurs erronées. Une approche humaine pour résoudre le jeu est de remplir les numéros un par un.
@@ -400,6 +403,6 @@ Il y a une stratégie d’optimisation mise en place pour que l’algorithme ne 
 
 
 
-![logo](art/python_included_nuget.png)
+
 
 
